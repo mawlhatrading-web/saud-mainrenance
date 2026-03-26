@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "itSupport": "الدعم التقني",
+    "humanResources": "الموارد البشرية",
+    "customerService": "خدمة العملاء",
+    "maintenance": "الصيانة",
+    "users": "المستخدمين",
+    "auditLogs": "سجل المراجعة",
+    "search": "بحث",
+    "customerPortal": "بوابة العملاء",
+    "analytics": "التحليلات"
+  },
+  "user": {
+    "name": "مدير الدعم",
+    "role": "مدير تقنية المعلومات"
+  },
+  "welcome": {
+    "greeting": "مرحباً بعودتك مدير الدعم",
+    "date": "الأربعاء، ٣ أبريل",
+    "quote": "اصنع تأثيراً إيجابياً في كل ما تفعله",
+    "myTickets": "تذاكري",
+    "openTickets": "التذاكر المفتوحة",
+    "refresh": "تحديث",
+    "aiMessage": "لا توجد بيانات متاحة - إذا كنت بحاجة للمساعدة، فقط اسأل",
+    "aiAssistant": "المساعد الذكي"
+  },
+  "stats": {
+    "activeUsers": "المستخدمين النشطين",
+    "openTickets": "التذاكر المفتوحة",
+    "hiringRequests": "طلبات التوظيف",
+    "resolved": "تم الحل",
+    "live": "مباشر",
+    "critical": "حرج",
+    "active": "نشط",
+    "completed": "مكتمل"
+  },
+  "tickets": {
+    "title": "التذاكر",
+    "myTickets": "تذاكري",
+    "openTickets": "التذاكر المفتوحة",
+    "closedToday": "مغلقة اليوم",
+    "slaBreach": "خرق الاتفاقية",
+    "assignedTo": "معين إلى",
+    "inProgress": "قيد التنفيذ",
+    "itClosed": "مغلقة تقنياً",
+    "linked": "مرتبطة",
+    "myTicketsTitle": "تذاكري",
+    "ticketNumber": "رقم التذكرة",
+    "subject": "الموضوع",
+    "customerName": "اسم العميل",
+    "priority": "الأولوية",
+    "status": "الحالة",
+    "department": "القسم",
+    "date": "التاريخ",
+    "actions": "الإجراءات"
+  },
+  "dashboard": {
+    "mainDashboard": "لوحة التحكم الرئيسية",
+    "humanResources": "الموارد البشرية",
+    "hrDashboard": "لوحة الموارد البشرية",
+    "itSupport": "الدعم التقني",
+    "itDashboard": "لوحة الدعم التقني",
+    "maintenance": "الصيانة",
+    "maintenanceDashboard": "لوحة التحكم",
+    "view": "عرض"
+  },
+  "maintenance": {
+    "title": "الصيانة",
+    "subtitle": "ورشة التقدم",
+    "goal": "١ هدف",
+    "back": "عودة",
+    "tabs": {
+      "overview": "إجمالي الحالة",
+      "open": "الحالة المفتوحة",
+      "closed": "الحالة المغلقة",
+      "pending": "قيد الانتظار"
+    },
+    "statsLabels": {
+      "totalOrders": "إجمالي الأوامر",
+      "weeklyOrders": "أوامر أسبوعية",
+      "monthlyOrders": "أوامر شهرية",
+      "inProgress": "قيد التنفيذ",
+      "completed": "مكتمل"
+    },
+    "quickActions": "إجراءات سريعة",
+    "actions": {
+      "newWorkOrder": "أمر عمل جديد",
+      "newWorkOrderDesc": "إنشاء أمر جديد",
+      "workOrders": "أوامر العمل",
+      "workOrdersDesc": "عرض جميع الأوامر",
+      "inventory": "المخزون",
+      "inventoryDesc": "إدارة المخزون",
+      "purchaseRequests": "طلبات الشراء",
+      "purchaseRequestsDesc": "عرض الطلبات",
+      "partsSetup": "إعداد القطع",
+      "partsSetupDesc": "تهيئة القطع",
+      "subscriptions": "الاشتراكات",
+      "subscriptionsDesc": "إدارة الاشتراكات"
+    },
+    "recentOrders": "الأوامر الأخيرة",
+    "orders": {
+      "order1": {
+        "id": "KHR-MRO-0029",
+        "status": "قيد التنفيذ",
+        "description": "إصلاح محرك - V8 4.0L biturbo W12",
+        "time": "منذ ساعتين"
+      },
+      "order2": {
+        "id": "KHR-MRO-0024",
+        "status": "معلق",
+        "description": "فحص محاذاة التعليق",
+        "time": "منذ ٥ ساعات"
+      },
+      "order3": {
+        "id": "KHR-MRO-0023",
+        "status": "مكتمل",
+        "description": "استبدال وسادات الفرامل - GT +965XXXXXXXX",
+        "time": "منذ يوم"
+      },
+      "order4": {
+        "id": "KHR-MRO-0022",
+        "status": "مفتوح",
+        "description": "نظام الدفع الكامل - GT +1XXX",
+        "time": "منذ يوم"
+      },
+      "order5": {
+        "id": "KHR-MRO-0007",
+        "status": "مفتوح",
+        "description": "خدمة شاملة - GT +1XXXXXXXX إصلاح كامل",
+        "time": "منذ ٣ أيام"
+      }
+    }
+  },
+  "workOrderForm": {
+    "title": "أمر صيانة جديد",
+    "orderNumber": "رقم الأمر",
+    "sections": {
+      "customer": "العميل",
+      "vehicle": "المركبة",
+      "issue": "المشكلة"
+    },
+    "customerInfo": "معلومات العميل",
+    "customerInfoDesc": "أدخل بيانات العميل لأمر العمل هذا",
+    "customerCode": "رمز العميل",
+    "customerCodePh": "مثال: CUST-001",
+    "customerName": "اسم العميل",
+    "customerNamePh": "الاسم الكامل",
+    "phone": "رقم الهاتف",
+    "phonePh": "+965 XXXX XXXX",
+    "email": "البريد الإلكتروني",
+    "emailPh": "email@example.com",
+    "address": "العنوان",
+    "addressPh": "الشارع، المدينة، المنطقة",
+    "vehicleInfo": "معلومات المركبة",
+    "vehicleInfoDesc": "أدخل تفاصيل المركبة التي تحتاج صيانة",
+    "make": "الشركة المصنعة",
+    "makePh": "مثال: رولز رويس",
+    "model": "الموديل",
+    "modelPh": "مثال: جوست",
+    "year": "سنة الصنع",
+    "yearPh": "مثال: 2024",
+    "vin": "رقم الهيكل",
+    "vinPh": "رقم الهيكل المكون من 17 خانة",
+    "plateNumber": "رقم اللوحة",
+    "plateNumberPh": "مثال: أ ب ج 1234",
+    "color": "اللون",
+    "colorPh": "مثال: أبيض قطبي",
+    "mileage": "المسافة المقطوعة (كم)",
+    "mileagePh": "مثال: 12500",
+    "fuelType": "نوع الوقود",
+    "selectFuel": "اختر نوع الوقود",
+    "fuels": {
+      "gasoline": "بنزين",
+      "diesel": "ديزل",
+      "electric": "كهربائي",
+      "hybrid": "هجين"
+    },
+    "transmission": "ناقل الحركة",
+    "selectTransmission": "اختر ناقل الحركة",
+    "transmissions": {
+      "automatic": "أوتوماتيك",
+      "manual": "يدوي"
+    },
+    "issueDetails": "تفاصيل المشكلة",
+    "issueDetailsDesc": "صف مشكلة الصيانة والأولوية",
+    "priority": "الأولوية",
+    "priorities": {
+      "low": "منخفضة",
+      "normal": "عادية",
+      "high": "عالية",
+      "urgent": "عاجلة"
+    },
+    "category": "الفئة",
+    "selectCategory": "اختر الفئة",
+    "categories": {
+      "engine": "المحرك",
+      "transmission": "ناقل الحركة",
+      "brakes": "الفرامل",
+      "suspension": "التعليق",
+      "electrical": "الكهرباء",
+      "bodywork": "الهيكل",
+      "general": "خدمة عامة"
+    },
+    "estimatedHours": "الساعات المقدرة",
+    "estimatedHoursPh": "مثال: 8",
+    "issueDescription": "وصف المشكلة",
+    "issueDescriptionPh": "صف المشكلة بالتفصيل — الأعراض، متى بدأت، إلخ",
+    "attachments": "المرفقات",
+    "attachmentsDrag": "اسحب الملفات وأفلتها هنا، أو انقر للتصفح",
+    "attachmentsFormats": "PNG, JPG, PDF — حتى 10 ميجابايت لكل ملف",
+    "cancel": "إلغاء",
+    "saveDraft": "حفظ كمسودة",
+    "submit": "إرسال الأمر"
+  },
+  "common": {
+    "switchLang": "English"
+  }
+}

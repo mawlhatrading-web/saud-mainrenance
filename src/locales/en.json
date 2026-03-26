@@ -1,0 +1,219 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "itSupport": "IT Support",
+    "humanResources": "Human Resources",
+    "customerService": "Customer Service",
+    "maintenance": "Maintenance",
+    "users": "Users",
+    "auditLogs": "Audit Logs",
+    "search": "Search",
+    "customerPortal": "Customer Portal",
+    "analytics": "Analytics"
+  },
+  "user": {
+    "name": "Support Admin",
+    "role": "IT Manager"
+  },
+  "welcome": {
+    "greeting": "Welcome Back Support Admin",
+    "date": "Wednesday, Apr 03",
+    "quote": "Make a positive impact in everything you do",
+    "myTickets": "My Tickets",
+    "openTickets": "Open Tickets",
+    "refresh": "Refresh",
+    "aiMessage": "No data available - If you need help, just ask",
+    "aiAssistant": "AI Assistant"
+  },
+  "stats": {
+    "activeUsers": "Active Users",
+    "openTickets": "Open Tickets",
+    "hiringRequests": "Hiring Requests",
+    "resolved": "Resolved",
+    "live": "Live",
+    "critical": "Critical",
+    "active": "Active",
+    "completed": "Completed"
+  },
+  "tickets": {
+    "title": "Tickets",
+    "myTickets": "My Tickets",
+    "openTickets": "Open Tickets",
+    "closedToday": "Closed Today",
+    "slaBreach": "SLA Breach",
+    "assignedTo": "Assigned To",
+    "inProgress": "In Progress",
+    "itClosed": "IT Closed",
+    "linked": "Linked",
+    "myTicketsTitle": "My Tickets",
+    "ticketNumber": "Ticket Number",
+    "subject": "Subject",
+    "customerName": "Customer Name",
+    "priority": "Priority",
+    "status": "Status",
+    "department": "Department",
+    "date": "Date",
+    "actions": "Actions"
+  },
+  "dashboard": {
+    "mainDashboard": "Main Dashboard",
+    "humanResources": "Human Resources",
+    "hrDashboard": "HR Dashboard",
+    "itSupport": "IT Support",
+    "itDashboard": "IT Dashboard",
+    "maintenance": "Maintenance",
+    "maintenanceDashboard": "Dashboard",
+    "view": "View"
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "subtitle": "Progress Workshop",
+    "goal": "1 Goal",
+    "back": "Back",
+    "tabs": {
+      "overview": "Overall Status",
+      "open": "Open Cases",
+      "closed": "Closed Cases",
+      "pending": "Pending"
+    },
+    "statsLabels": {
+      "totalOrders": "Total Orders",
+      "weeklyOrders": "Weekly Orders",
+      "monthlyOrders": "Monthly Orders",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "quickActions": "Quick Actions",
+    "actions": {
+      "newWorkOrder": "New Work Order",
+      "newWorkOrderDesc": "Create new order",
+      "workOrders": "Work Orders",
+      "workOrdersDesc": "View all orders",
+      "inventory": "Inventory",
+      "inventoryDesc": "Manage stock",
+      "purchaseRequests": "Purchase Requests",
+      "purchaseRequestsDesc": "View requests",
+      "partsSetup": "Parts Setup",
+      "partsSetupDesc": "Configure parts",
+      "subscriptions": "Subscriptions",
+      "subscriptionsDesc": "Manage subscriptions"
+    },
+    "recentOrders": "Recent Orders",
+    "orders": {
+      "order1": {
+        "id": "KHR-MRO-0029",
+        "status": "In Progress",
+        "description": "Engine overhaul - V8 4.0L biturbo W12 engine",
+        "time": "2 hours ago"
+      },
+      "order2": {
+        "id": "KHR-MRO-0024",
+        "status": "Pending",
+        "description": "Suspension alignment check",
+        "time": "5 hours ago"
+      },
+      "order3": {
+        "id": "KHR-MRO-0023",
+        "status": "Completed",
+        "description": "Brake pad replacement - GT +965XXXXXXXX",
+        "time": "1 day ago"
+      },
+      "order4": {
+        "id": "KHR-MRO-0022",
+        "status": "Open",
+        "description": "Total Powertrain - GT +1XXX",
+        "time": "1 day ago"
+      },
+      "order5": {
+        "id": "KHR-MRO-0007",
+        "status": "Open",
+        "description": "Major service - GT +1XXXXXXXX full overhaul",
+        "time": "3 days ago"
+      }
+    }
+  },
+  "workOrderForm": {
+    "title": "New Maintenance Order",
+    "orderNumber": "Order No.",
+    "sections": {
+      "customer": "Customer",
+      "vehicle": "Vehicle",
+      "issue": "Issue"
+    },
+    "customerInfo": "Customer Information",
+    "customerInfoDesc": "Enter the customer details for this work order",
+    "customerCode": "Customer Code",
+    "customerCodePh": "e.g. CUST-001",
+    "customerName": "Customer Name",
+    "customerNamePh": "Full name",
+    "phone": "Phone Number",
+    "phonePh": "+965 XXXX XXXX",
+    "email": "Email Address",
+    "emailPh": "email@example.com",
+    "address": "Address",
+    "addressPh": "Street, city, area",
+    "vehicleInfo": "Vehicle Information",
+    "vehicleInfoDesc": "Provide the vehicle details that require maintenance",
+    "make": "Make",
+    "makePh": "e.g. Rolls-Royce",
+    "model": "Model",
+    "modelPh": "e.g. Ghost",
+    "year": "Year",
+    "yearPh": "e.g. 2024",
+    "vin": "VIN Number",
+    "vinPh": "17-character VIN",
+    "plateNumber": "Plate Number",
+    "plateNumberPh": "e.g. ABC 1234",
+    "color": "Color",
+    "colorPh": "e.g. Arctic White",
+    "mileage": "Mileage (km)",
+    "mileagePh": "e.g. 12500",
+    "fuelType": "Fuel Type",
+    "selectFuel": "Select fuel type",
+    "fuels": {
+      "gasoline": "Gasoline",
+      "diesel": "Diesel",
+      "electric": "Electric",
+      "hybrid": "Hybrid"
+    },
+    "transmission": "Transmission",
+    "selectTransmission": "Select transmission",
+    "transmissions": {
+      "automatic": "Automatic",
+      "manual": "Manual"
+    },
+    "issueDetails": "Issue Details",
+    "issueDetailsDesc": "Describe the maintenance issue and priority",
+    "priority": "Priority",
+    "priorities": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "category": "Category",
+    "selectCategory": "Select category",
+    "categories": {
+      "engine": "Engine",
+      "transmission": "Transmission",
+      "brakes": "Brakes",
+      "suspension": "Suspension",
+      "electrical": "Electrical",
+      "bodywork": "Bodywork",
+      "general": "General Service"
+    },
+    "estimatedHours": "Estimated Hours",
+    "estimatedHoursPh": "e.g. 8",
+    "issueDescription": "Issue Description",
+    "issueDescriptionPh": "Describe the problem in detail — symptoms, when it started, etc.",
+    "attachments": "Attachments",
+    "attachmentsDrag": "Drag & drop files here, or click to browse",
+    "attachmentsFormats": "PNG, JPG, PDF — up to 10 MB each",
+    "cancel": "Cancel",
+    "saveDraft": "Save Draft",
+    "submit": "Submit Order"
+  },
+  "common": {
+    "switchLang": "عربي"
+  }
+}
