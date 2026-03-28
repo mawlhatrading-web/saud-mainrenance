@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState, type ElementType } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   Wrench,
@@ -16,26 +17,28 @@ import {
   Palette,
   Calendar,
   Phone,
-  Mail,
   MapPin,
   Hash,
   FileText,
   Flag,
   Tag,
   Clock,
+  CreditCard,
 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
+import { useWorkOrders } from "@/context/WorkOrdersContext";
 
 type FormData = {
   customerCode: string;
   customerName: string;
   phone: string;
-  email: string;
+  idNumber: string;
   address: string;
   make: string;
   model: string;
   year: string;
   vin: string;
+  vccNumber: string;
   plateNumber: string;
   color: string;
   mileage: string;
@@ -52,12 +55,13 @@ const INITIAL: FormData = {
   customerCode: "",
   customerName: "",
   phone: "",
-  email: "",
+  idNumber: "",
   address: "",
   make: "",
   model: "",
   year: "",
   vin: "",
+  vccNumber: "",
   plateNumber: "",
   color: "",
   mileage: "",
@@ -77,7 +81,7 @@ function SectionHeader({
   step,
   color,
 }: {
-  icon: React.ElementType;
+  icon: ElementType;
   title: string;
   subtitle: string;
   step: number;
@@ -126,7 +130,7 @@ function InputField({
   type = "text",
   required,
 }: {
-  icon: React.ElementType;
+  icon: ElementType;
   label: string;
   placeholder: string;
   value: string;
@@ -164,7 +168,7 @@ function SelectField({
   options,
   required,
 }: {
-  icon: React.ElementType;
+  icon: ElementType;
   label: string;
   value: string;
   onChange: (v: string) => void;
@@ -203,10 +207,100 @@ function SelectField({
 export default function NewWorkOrderPage() {
   const { t } = useLang();
   const f = t.workOrderForm;
+  const router = useRouter();
+  const { orders, addOrder, updateOrder } = useWorkOrders();
   const [form, setForm] = useState<FormData>(INITIAL);
+  const [files, setFiles] = useState<string[]>([]);
+  const [error, setError] = useState("");
 
   const set = (key: keyof FormData) => (val: string) =>
     setForm((prev) => ({ ...prev, [key]: val }));
+
+  const nextOrderNumber = useMemo(() => {
+    const maxNumber = orders.reduce((max, order) => {
+      const match = order.orderNumber.match(/(\d+)$/);
+      const value = match ? Number(match[1]) : 0;
+      return Math.max(max, value);
+    }, 24);
+
+    return `KHR-MNT-${String(maxNumber + 1).padStart(4, "0")}`;
+  }, [orders]);
+
+  const requiredFieldsFilled =
+    form.customerName.trim() &&
+    form.phone.trim() &&
+    form.idNumber.trim() &&
+    form.make.trim() &&
+    form.model.trim() &&
+    form.year.trim() &&
+    form.plateNumber.trim() &&
+    form.issueDescription.trim() &&
+    form.category.trim();
+
+  const persistOrder = (stage: "received" | "pending") => {
+    if (!requiredFieldsFilled) {
+      setError(f.validation);
+      return;
+    }
+
+    setError("");
+
+    const newOrder = addOrder({
+      customerCode: form.customerCode,
+      customerName: form.customerName,
+      phone: form.phone,
+      idNumber: form.idNumber,
+      address: form.address,
+      make: form.make,
+      model: form.model,
+      year: form.year,
+      vin: form.vin,
+      vccNumber: form.vccNumber,
+      plateNumber: form.plateNumber,
+      color: form.color,
+      mileage: form.mileage,
+      fuelType: form.fuelType,
+      transmission: form.transmission,
+      issueDescription: form.issueDescription,
+      priority: form.priority as "low" | "normal" | "high" | "urgent",
+      category: form.category as
+        | "engine"
+        | "transmission"
+        | "brakes"
+        | "suspension"
+        | "electrical"
+        | "bodywork"
+        | "general",
+      estimatedHours: form.estimatedHours,
+    });
+
+    if (stage === "pending") {
+      updateOrder(newOrder.id, {
+        customerCode: newOrder.customerCode,
+        customerName: newOrder.customerName,
+        phone: newOrder.phone,
+        idNumber: newOrder.idNumber,
+        address: newOrder.address,
+        make: newOrder.make,
+        model: newOrder.model,
+        year: newOrder.year,
+        vin: newOrder.vin,
+        vccNumber: newOrder.vccNumber,
+        plateNumber: newOrder.plateNumber,
+        color: newOrder.color,
+        mileage: newOrder.mileage,
+        fuelType: newOrder.fuelType,
+        transmission: newOrder.transmission,
+        issueDescription: newOrder.issueDescription,
+        priority: newOrder.priority,
+        category: newOrder.category,
+        estimatedHours: newOrder.estimatedHours,
+        stage: "pending",
+      });
+    }
+
+    router.push(stage === "pending" ? "/maintenance/work-orders" : "/");
+  };
 
   return (
     <div className="max-w-[1100px] mx-auto px-4 py-6 space-y-6">
@@ -235,7 +329,7 @@ export default function NewWorkOrderPage() {
         </div>
         <div className="hidden sm:flex items-center gap-2 text-sm text-gray-400 bg-white border border-gray-200 px-4 py-2 rounded-xl">
           <Hash size={14} />
-          {f.orderNumber}: <span className="text-gray-700 font-mono font-semibold">KHR-MRO-0030</span>
+          {f.orderNumber}: <span className="text-gray-700 font-mono font-semibold">{nextOrderNumber}</span>
         </div>
       </div>
 
@@ -301,12 +395,12 @@ export default function NewWorkOrderPage() {
             required
           />
           <InputField
-            icon={Mail}
-            label={f.email}
-            placeholder={f.emailPh}
-            value={form.email}
-            onChange={set("email")}
-            type="email"
+            icon={CreditCard}
+            label={f.idNumber}
+            placeholder={f.idNumberPh}
+            value={form.idNumber}
+            onChange={set("idNumber")}
+            required
           />
           <div className="md:col-span-2">
             <InputField
@@ -361,6 +455,13 @@ export default function NewWorkOrderPage() {
             placeholder={f.vinPh}
             value={form.vin}
             onChange={set("vin")}
+          />
+          <InputField
+            icon={Hash}
+            label={f.vccNumber}
+            placeholder={f.vccNumberPh}
+            value={form.vccNumber}
+            onChange={set("vccNumber")}
           />
           <InputField
             icon={FileText}
@@ -488,17 +589,45 @@ export default function NewWorkOrderPage() {
             <label className="text-sm font-medium text-gray-700 mb-1.5 block">
               {f.attachments}
             </label>
-            <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-blue-300 hover:bg-blue-50/30 transition-all cursor-pointer">
+            <label className="block border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-blue-300 hover:bg-blue-50/30 transition-all cursor-pointer">
+              <input
+                type="file"
+                multiple
+                className="hidden"
+                onChange={(event) =>
+                  setFiles(
+                    Array.from(event.target.files ?? []).map((file) => file.name),
+                  )
+                }
+              />
               <Upload size={28} className="text-gray-300 mx-auto mb-2" />
               <p className="text-sm text-gray-500">{f.attachmentsDrag}</p>
               <p className="text-xs text-gray-400 mt-1">{f.attachmentsFormats}</p>
-            </div>
+              {files.length > 0 ? (
+                <div className="mt-3 flex flex-wrap justify-center gap-2">
+                  {files.map((file) => (
+                    <span
+                      key={file}
+                      className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700"
+                    >
+                      {file}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </label>
           </div>
         </div>
       </div>
 
       {/* Actions */}
-      <div className="flex items-center justify-between bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+      <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+        {error ? (
+          <p className="mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+            {error}
+          </p>
+        ) : null}
+        <div className="flex items-center justify-between gap-4">
         <Link
           href="/maintenance"
           className="px-5 py-2.5 text-sm font-medium text-gray-600 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
@@ -506,15 +635,22 @@ export default function NewWorkOrderPage() {
           {f.cancel}
         </Link>
         <div className="flex items-center gap-3">
-          <button className="px-5 py-2.5 text-sm font-medium text-blue-600 border border-blue-200 rounded-xl hover:bg-blue-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => persistOrder("pending")}
+            className="px-5 py-2.5 text-sm font-medium text-blue-600 border border-blue-200 rounded-xl hover:bg-blue-50 transition-colors flex items-center gap-2"
+          >
             <Save size={16} />
             {f.saveDraft}
           </button>
-          <button className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all shadow-md shadow-blue-500/20 flex items-center gap-2">
+          <button
+            onClick={() => persistOrder("received")}
+            className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all shadow-md shadow-blue-500/20 flex items-center gap-2"
+          >
             <Wrench size={16} />
             {f.submit}
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

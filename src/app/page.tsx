@@ -12,7 +12,7 @@ export default function DashboardPage() {
       <WelcomeBanner />
       <StatsCards />
       <TicketsOverview />
-      <TicketsTable />
+      <TicketsTable limit={5} />
       <DashboardCards />
     </div>
   );

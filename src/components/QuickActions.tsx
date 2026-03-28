@@ -29,7 +29,7 @@ export default function QuickActions() {
       iconColor: "text-indigo-600",
       title: t.maintenance.actions.workOrders,
       desc: t.maintenance.actions.workOrdersDesc,
-      href: "#",
+      href: "/maintenance/work-orders",
     },
     {
       icon: Package,

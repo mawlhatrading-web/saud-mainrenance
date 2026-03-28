@@ -1,40 +1,37 @@
 "use client";
 
+import Link from "next/link";
 import { Plus, Filter } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
+import { useWorkOrders } from "@/context/WorkOrdersContext";
+import type { WorkOrder } from "@/types/work-orders";
 
-const statusColors: Record<string, string> = {
-  "In Progress": "bg-blue-100 text-blue-700",
-  "قيد التنفيذ": "bg-blue-100 text-blue-700",
-  "Pending": "bg-amber-100 text-amber-700",
-  "معلق": "bg-amber-100 text-amber-700",
-  "Completed": "bg-green-100 text-green-700",
-  "مكتمل": "bg-green-100 text-green-700",
-  "Open": "bg-purple-100 text-purple-700",
-  "مفتوح": "bg-purple-100 text-purple-700",
+const statusColors: Record<WorkOrder["stage"], string> = {
+  received: "bg-slate-100 text-slate-700",
+  in_progress: "bg-blue-100 text-blue-700",
+  pending: "bg-amber-100 text-amber-700",
+  completed: "bg-green-100 text-green-700",
 };
 
-const dotColors: Record<string, string> = {
-  "In Progress": "bg-blue-500",
-  "قيد التنفيذ": "bg-blue-500",
-  "Pending": "bg-amber-500",
-  "معلق": "bg-amber-500",
-  "Completed": "bg-green-500",
-  "مكتمل": "bg-green-500",
-  "Open": "bg-purple-500",
-  "مفتوح": "bg-purple-500",
+const dotColors: Record<WorkOrder["stage"], string> = {
+  received: "bg-slate-500",
+  in_progress: "bg-blue-500",
+  pending: "bg-amber-500",
+  completed: "bg-green-500",
 };
 
 export default function RecentOrders() {
   const { t } = useLang();
+  const { orders } = useWorkOrders();
 
-  const orders = [
-    t.maintenance.orders.order1,
-    t.maintenance.orders.order2,
-    t.maintenance.orders.order3,
-    t.maintenance.orders.order4,
-    t.maintenance.orders.order5,
-  ];
+  const stageLabels: Record<WorkOrder["stage"], string> = {
+    received: t.workOrdersPage.stages.received,
+    in_progress: t.workOrdersPage.stages.inProgress,
+    pending: t.workOrdersPage.stages.pending,
+    completed: t.workOrdersPage.stages.completed,
+  };
+
+  const recentOrders = orders.slice(0, 5);
 
   return (
     <div className="space-y-4">
@@ -43,46 +40,60 @@ export default function RecentOrders() {
           | {t.maintenance.recentOrders}
         </h2>
         <div className="flex items-center gap-2">
-          <button className="p-2 text-gray-400 hover:text-blue-600 bg-white border border-gray-200 rounded-lg hover:border-blue-200 transition-colors">
+          <Link
+            href="/maintenance/new-work-order"
+            className="p-2 text-gray-400 hover:text-blue-600 bg-white border border-gray-200 rounded-lg hover:border-blue-200 transition-colors"
+          >
             <Plus size={16} />
-          </button>
-          <button className="p-2 text-gray-400 hover:text-blue-600 bg-white border border-gray-200 rounded-lg hover:border-blue-200 transition-colors">
+          </Link>
+          <Link
+            href="/maintenance/work-orders"
+            className="p-2 text-gray-400 hover:text-blue-600 bg-white border border-gray-200 rounded-lg hover:border-blue-200 transition-colors"
+          >
             <Filter size={16} />
-          </button>
+          </Link>
         </div>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 divide-y divide-gray-50">
-        {orders.map((order) => (
-          <div
-            key={order.id}
-            className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors cursor-pointer"
-          >
-            <div className="flex items-center gap-3">
-              <span className={`w-3 h-3 rounded-full shrink-0 ${dotColors[order.status] || "bg-gray-400"}`} />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold text-gray-900 text-sm">
-                    {order.id}
-                  </span>
-                  <span
-                    className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                      statusColors[order.status] || "bg-gray-100 text-gray-600"
-                    }`}
-                  >
-                    {order.status}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-500 mt-0.5">
-                  {order.description}
-                </p>
-              </div>
-            </div>
-            <span className="text-xs text-gray-400 shrink-0 ms-4">
-              {order.time}
-            </span>
+        {recentOrders.length === 0 ? (
+          <div className="p-8 text-center text-sm text-gray-400">
+            {t.workOrdersPage.empty}
           </div>
-        ))}
+        ) : (
+          recentOrders.map((order) => (
+            <Link
+              key={order.id}
+              href="/maintenance/work-orders"
+              className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <span className={`w-3 h-3 rounded-full shrink-0 ${dotColors[order.stage]}`} />
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-semibold text-gray-900 text-sm">
+                      {order.orderNumber}
+                    </span>
+                    <span
+                      className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusColors[order.stage]}`}
+                    >
+                      {stageLabels[order.stage]}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-0.5 truncate">
+                    {order.customerName} - {order.make} {order.model}
+                  </p>
+                  <p className="text-sm text-gray-500 truncate">
+                    {order.issueDescription}
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs text-gray-400 shrink-0 ms-4">
+                {order.createdAt}
+              </span>
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );
